@@ -105,16 +105,15 @@ class FirstToolUI(QWidget):
 
 def get_main_window():
     """Get the maya window pointer to parent this tool under."""
-    omui.MQtUtil.mainWindow()
     ptr = omui.MQtUtil.mainWindow()
     # for Py3 use int() , for Py2 use long() , more info: https://docs.python.org/3/whatsnew/3.0.html#integers
-    maya_window_widget = wrapInstance(int(ptr), QWidget)
-    return maya_window_widget
+    maya_window = wrapInstance(int(ptr), QWidget)
+    return maya_window
 
-maya_window_widget = get_main_window()
+maya_window = get_main_window()
 try:
     First_UI.close()
 except NameError:
     pass
-First_UI = FirstToolUI(maya_window_widget)
+First_UI = FirstToolUI(maya_window)
 First_UI.show()
